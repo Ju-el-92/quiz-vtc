@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quizz VTC</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #0C2C1C;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .question {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #2A9C64;
+    }
+    .options button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #2A9C64;
+      border-radius: 5px;
+      background: white;
+      color: #0C2C1C;
+      cursor: pointer;
+    }
+    .options button.correct {
+      background: #d4edda;
+      border-color: #28a745;
+      color: #155724;
+    }
+    .options button.incorrect {
+      background: #f8d7da;
+      border-color: #dc3545;
+      color: #721c24;
+    }
+    .feedback {
+      margin-top: 15px;
+      background: #e2e3e5;
+      padding: 10px;
+      border-left: 5px solid #2A9C64;
+    }
+    .progress {
+      margin: 20px 0;
+      height: 10px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 10px;
+      background: #2A9C64;
+      width: 0;
+      transition: width 0.3s ease;
+    }
+    .results {
+      text-align: center;
+    }
+    .results h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .restart-btn {
+      margin-top: 20px;
+      background: #2A9C64;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+<div class="card">
+<h2 class="question">Chargement du quizz...</h2>
+</div>
+</div>
+<script>
+    // Exemple ultra simplifié avec 1 question
+    
+    const questions = [{
+      question: "Quel habitacle les passagers apprécient-ils le plus ?",
+      options: [
+        "Un véhicule parfaitement propre, sans aucune odeur.",
+        "Une voiture parfumée avec beaucoup de décoration.",
+        "Une voiture personnelle avec objets visibles du chauffeur."
+      ],
+      correct: 0,
+      feedback: "Les passagers apprécient généralement plus un espace neutre, impeccable et sans odeur marquée."
+    },
+    {
+      question: "Question exemple n°2 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 2."
+    },
+    {
+      question: "Question exemple n°3 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 3."
+    },
+    {
+      question: "Question exemple n°4 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 4."
+    },
+    {
+      question: "Question exemple n°5 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 5."
+    },
+    {
+      question: "Question exemple n°6 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 6."
+    },
+    {
+      question: "Question exemple n°7 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 7."
+    },
+    {
+      question: "Question exemple n°8 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 8."
+    },
+    {
+      question: "Question exemple n°9 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 9."
+    },
+    {
+      question: "Question exemple n°10 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 10."
+    },
+    {
+      question: "Question exemple n°11 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 11."
+    },
+    {
+      question: "Question exemple n°12 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 12."
+    },
+    {
+      question: "Question exemple n°13 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 13."
+    },
+    {
+      question: "Question exemple n°14 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 14."
+    },
+    {
+      question: "Question exemple n°15 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 15."
+    },
+    {
+      question: "Question exemple n°16 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 16."
+    },
+    {
+      question: "Question exemple n°17 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 17."
+    },
+    {
+      question: "Question exemple n°18 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 18."
+    },
+    {
+      question: "Question exemple n°19 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 19."
+    },
+    {
+      question: "Question exemple n°20 ?",
+      options: [
+        "Option A",
+        "Option B",
+        "Option C"
+      ],
+      correct: 0,
+      feedback: "Ceci est un exemple de feedback pour la question 20."
+    }];
+
+    let current = 0;
+    let score = 0;
+
+    function renderQuestion() {
+      const q = questions[current];
+      const container = document.getElementById("app");
+
+      const optionsHtml = q.options.map((opt, i) => `
+        <button onclick="selectOption(${i})">${opt}</button>
+      `).join("");
+
+      container.innerHTML = \`
+        <div class="card">
+          <div class="question">\${q.question}</div>
+          <div class="options">\${optionsHtml}</div>
+        </div>
+      \`;
+    }
+
+    function selectOption(i) {
+      const q = questions[current];
+      const buttons = document.querySelectorAll("button");
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.correct) btn.classList.add("correct");
+        else if (idx === i) btn.classList.add("incorrect");
+      });
+
+      if (i === q.correct) score += 3;
+
+      const container = document.getElementById("app");
+      container.innerHTML += \`
+        <div class="feedback">\${q.feedback}</div>
+        <button class="restart-btn" onclick="restartQuizz()">Recommencer</button>
+      \`;
+    }
+
+    function restartQuizz() {
+      score = 0;
+      current = 0;
+      renderQuestion();
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
